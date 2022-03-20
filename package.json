@@ -1,5 +1,5 @@
 {
-  "name": "logseq-plugin-template-react",
+  "name": "logseq-find-and-replace",
   "version": "2.0.0",
   "main": "dist/index.html",
   "scripts": {

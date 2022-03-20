@@ -6,6 +6,7 @@ import ReactDOM from "react-dom";
 import App from "./App";
 
 import { logseq as PL } from "../package.json";
+import { handleClosePopup } from "./handleClosePopup";
 
 // @ts-expect-error
 const css = (t, ...args) => String.raw(t, ...args);
@@ -21,7 +22,7 @@ function main() {
     </React.StrictMode>,
     document.getElementById("app")
   );
-
+handleClosePopup()
   function createModel() {
     return {
       show() {
