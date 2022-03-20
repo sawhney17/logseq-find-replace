@@ -49,8 +49,8 @@ function App() {
       }
     }
     function searchClicked() {
-        logseq.DB.datascriptQuery(
-          `
+      logseq.DB.datascriptQuery(
+        `
       [:find (pull ?b [*])
          :where
          [?b :block/content ?c]
@@ -58,15 +58,15 @@ function App() {
          [(re-find ?p ?c)]
        ]
       `
-        ).then((result) => {
-          document.getElementById(
-            "matchCount"
-          )!.innerHTML = `Matches: ${result.length}`;
-          searchAvailable = true;
-          checkEnableability();
-          results = result;
-        });
-      }
+      ).then((result) => {
+        document.getElementById(
+          "matchCount"
+        )!.innerHTML = `Matches: ${result.length}`;
+        searchAvailable = true;
+        checkEnableability();
+        results = result;
+      });
+    }
     function replaceClicked() {
       var retVal = confirm(
         `Are you sure you want to replace all instances of "${formValues}" with "${replaceValues}" across ${results.length} blocks?`
@@ -88,8 +88,7 @@ function App() {
         logseq.App.showMsg(
           `Successfully replaced in ${results.length} blocks", "success`
         );
-      }
-      else{
+      } else {
         logseq.hideMainUI();
         logseq.App.showMsg("Replacement Operation Cancelled", "error");
       }
