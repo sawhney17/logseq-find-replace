@@ -10,7 +10,6 @@ import { handleClosePopup } from "./handleClosePopup";
 
 
 const css = (t, ...args) => String.raw(t, ...args);
-
 const pluginId = PL.id;
 const isDev = process.env.NODE_ENV === "development";
 
@@ -25,35 +24,24 @@ function main() {
 handleClosePopup()
   function createModel() {
     return {
-      show() {
+      toggleFindReplaceUI() {
         logseq.showMainUI();
       },
     };
   }
-
   logseq.provideModel(createModel());
   logseq.setMainUIInlineStyle({
     zIndex: 11,
   });
 
-  const openIconName = "template-plugin-open";
-
-  logseq.provideStyle(css`
-    .${openIconName} {
-      opacity: 0.55;
-      font-size: 20px;
-      margin-top: 4px;
-    }
-
-    .${openIconName}:hover {
-      opacity: 0.9;
-    }
-  `);
+  const openIconName = "open-find-and-replace";
 
   logseq.App.registerUIItem("toolbar", {
     key: openIconName,
     template: `
-      <div data-on-click="show" class="${openIconName}">⚙️</div>
+      <a class="button" data-on-click="toggleFindReplaceUI">
+        <i class="ti ti-replace"></i>
+      </a>
     `,
   });
 }
