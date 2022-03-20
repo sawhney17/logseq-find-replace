@@ -1,10 +1,8 @@
 import React, { useState, useRef } from "react";
 import { useAppVisible } from "./utils";
-import {
-  BlockEntity,
-  PageEntity,
-  IBatchBlock,
-} from '@logseq/libs/dist/LSPlugin.user';
+// import {
+//   IBatchBlock,
+// } from "@logseq/libs/dist/LSPlugin.user";
 function App() {
   // const innerRef = useRef<HTMLDivElement>(null);
   const visible = useAppVisible();
@@ -15,12 +13,15 @@ function App() {
     var formValues = "";
     var replaceValues = "";
     var freezeEntry = true;
-    var results: IBatchBlock[] = [];
+    var results = [];
     function changeValue(e: any) {
       formValues = e.target.value;
       console.log("hi");
       console.log(formValues);
-      searchAvailable = false;
+
+      if (formValues != "") {
+        searchAvailable = false;
+      }
       checkEnableability();
     }
     function changeReplaceValue(e: any) {
@@ -29,25 +30,27 @@ function App() {
     }
     function checkEnableability() {
       var replaceEntry = document.getElementById("Replace Status")!;
-      if (searchAvailable == true && replaceValues != "" && results.length != 0) {
-        console.log("hi");
+      if (
+        searchAvailable == true &&
+        replaceValues != "" &&
+        results.length != 0
+      ) {
         replaceEntry.className = replaceEntry.className.replace(
           "opacity-20",
           "opacity-100"
         );
-        freezeEntry = false
-        console.log(replaceEntry);
+        freezeEntry = false;
       } else {
         replaceEntry.className = replaceEntry.className.replace(
           "opacity-100",
           "opacity-20"
         );
-        freezeEntry = true
+        freezeEntry = true;
       }
     }
     function searchClicked() {
-      try {logseq.DB.datascriptQuery(
-        `
+        logseq.DB.datascriptQuery(
+          `
       [:find (pull ?b [*])
          :where
          [?b :block/content ?c]
@@ -55,30 +58,41 @@ function App() {
          [(re-find ?p ?c)]
        ]
       `
-      ).then((result) => {
-        document.getElementById(
-          "matchCount"
-        )!.innerHTML = `Matches: ${result.length}`;
-        searchAvailable = true;
-        checkEnableability();
-        results = result;
-      });}
-      catch(error){
+        ).then((result) => {
+          document.getElementById(
+            "matchCount"
+          )!.innerHTML = `Matches: ${result.length}`;
+          searchAvailable = true;
+          checkEnableability();
+          results = result;
+        });
       }
-    }
-    function replaceClicked(){
-      console.log(results);
-      for (const x in results){
-        console.log(results[x])
-        const uuid = results[x][0].uuid["$uuid$"];
-        console.log(uuid)
-        const content = results[x][0].content;
-        console.log(content)
-        logseq.Editor.updateBlock(results[x][0].uuid["$uuid$"], results[x][0].content.replaceAll(formValues, replaceValues))
-        logseq.hideMainUI()
-        
+    function replaceClicked() {
+      var retVal = confirm(
+        `Are you sure you want to replace all instances of "${formValues}" with "${replaceValues}" across ${results.length} blocks?`
+      );
+      if (retVal == true) {
+        for (const x in results) {
+          console.log(results[x]);
+          const uuid = results[x][0].uuid["$uuid$"];
+          console.log(uuid);
+          const content = results[x][0].content;
+          console.log(content);
+          logseq.Editor.updateBlock(
+            results[x][0].uuid["$uuid$"],
+            results[x][0].content.replaceAll(formValues, replaceValues)
+          );
+          logseq.hideMainUI();
+        }
+
+        logseq.App.showMsg(
+          `Successfully replaced in ${results.length} blocks", "success`
+        );
       }
-      logseq.App.showMsg(`Successfully replaced in ${results.length} blocks", "success`)
+      else{
+        logseq.hideMainUI();
+        logseq.App.showMsg("Replacement Operation Cancelled", "error");
+      }
     }
     return (
       <div className="grid place-items-center justify-center h-screen">
