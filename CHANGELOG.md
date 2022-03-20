@@ -1,3 +1,10 @@
+# 1.0.0 (2022-03-20)
+
+
+### Bug Fixes
+
+* **ci:** make it work ([3fbf669](https://github.com/sawhney17/logseq-find-replace/commit/3fbf669e1bb5cca9a5c4e66d9a42906291303311))
+
 # [2.0.0](https://github.com/pengx17/logseq-plugin-template-react/compare/v1.0.0...v2.0.0) (2022-03-17)
 
 # 1.0.0 (2021-09-03)
