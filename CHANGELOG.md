@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/sawhney17/logseq-find-replace/compare/v1.0.0...v1.0.1) (2022-03-20)
+
+
+### Bug Fixes
+
+* **icon:** icon issue ([e9ad3fd](https://github.com/sawhney17/logseq-find-replace/commit/e9ad3fdfb315fcf1838f6f73cd9a28d34e4d72db))
+
 # 1.0.0 (2022-03-20)
 
 
