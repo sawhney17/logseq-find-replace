@@ -36,7 +36,7 @@
     "windicss": "3.5.1"
   },
   "logseq": {
-    "id": "_pengx17-logseq-template-react",
-    "icon": "./logo.svg"
+    "id": "logseq-find-replace-plugin",
+    "icon": "./icon.png"
   }
 }
