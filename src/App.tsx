@@ -12,7 +12,7 @@ function App() {
 
   function checkEnableability() {
     var replaceEntry = document.getElementById("Replace Status")!;
-    if (searchAvailable == true && replaceValues != "" && results.length != 0) {
+    if (searchAvailable == true && results.length != 0) {
       replaceEntry.className = replaceEntry.className.replace(
         "opacity-20",
         "opacity-100"
