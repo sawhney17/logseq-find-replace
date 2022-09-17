@@ -158,7 +158,7 @@ function App() {
         if (retVal == true) {
           for (const x in results) {
             console.log(results[x]);
-            const uuid = results[x][0].uuid["$uuid$"];
+            const uuid = results[x][0].uuid;
             console.log(uuid);
             const content = results[x][0].content;
             console.log(content);
@@ -171,7 +171,7 @@ function App() {
             console.log(regex);
             console.log(content.replaceAll(regex, replaceValues));
             logseq.Editor.updateBlock(
-              results[x][0].uuid["$uuid$"],
+              results[x][0].uuid,
               results[x][0].content.replaceAll(regex, replaceValues)
             );
             logseq.hideMainUI();
