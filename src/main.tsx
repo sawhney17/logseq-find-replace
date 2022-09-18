@@ -42,7 +42,7 @@ handleClosePopup()
       <a class="button" data-on-click="toggleFindReplaceUI">
         <i class="ti ti-replace"></i>
       </a>
-    `,
+    `, 
   });
 }
 
