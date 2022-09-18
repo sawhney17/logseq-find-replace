@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/sawhney17/logseq-find-replace/compare/v1.1.0...v1.1.1) (2022-09-18)
+
+
+### Bug Fixes
+
+* **bug:** imrpove reliabilty with new version ([ebf1362](https://github.com/sawhney17/logseq-find-replace/commit/ebf136224fa1f2315e88dc3c7032969b27830e31))
+
 # [1.1.0](https://github.com/sawhney17/logseq-find-replace/compare/v1.0.1...v1.1.0) (2022-03-23)
 
 
